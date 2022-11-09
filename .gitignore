@@ -33,3 +33,6 @@
 /app/assets/builds/*
 !/app/assets/builds/.keep
 dump.rdb
+
+# Ignore application configuration
+/config/application.yml
