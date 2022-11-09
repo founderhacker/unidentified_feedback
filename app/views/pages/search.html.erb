@@ -1,0 +1,15 @@
+<div class="">
+
+</div>
+<form class="mb-10" action="search" method="post">
+  <input type="text" name="recipient_handle" value="" placeholder="ryanckulp">
+  <input type="text" name="text" value="" placeholder="i really hate you because...">
+  <button type="submit">Search Now</button>
+</form>
+
+<!-- /feedbacks -->
+<%= form_for(Feedback.new) do |f| %>
+  <%= f.text_field :recipient_handle, placeholder: 'ryanckulp' %>
+  <%= f.text_field :text, placeholder: 'i really hate you cuz..' %>
+  <%= f.submit 'Tweet' %>
+<% end %>

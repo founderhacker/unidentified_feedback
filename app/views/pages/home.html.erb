@@ -11,35 +11,35 @@
   </div>
 </div>
 
+<%= form_for(Feedback.new) do |f| %>
+  <div class="max-w-lg mx-auto mt-28">
+    <div>
+      <label for="recipient_handle" class="block text-sm font-medium text-gray-700">Recipient Twitter Handle</label>
+      <div class="mt-1 flex rounded-md shadow-sm">
+        <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">@</span>
+        <input type="text" name="feedback[recipient_handle]" id="feedback_recipient_handle" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 px-3 py-2 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="ryanckulp">
+      </div>
+    </div>
 
-<div class="max-w-lg mx-auto mt-28">
-  <div>
-    <label for="recipient_handle" class="block text-sm font-medium text-gray-700">Recipient Twitter Handle</label>
-    <div class="mt-1 flex rounded-md shadow-sm">
-      <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">@</span>
-      <input type="text" name="recipient_handle" id="recipient_handle" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 px-3 py-2 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="ryanckulp">
+    <!-- <label for="comment" class="block text-sm font-medium text-gray-700">Add your comment</label> -->
+
+    <div class="mt-1">
+      <textarea rows="4" name="feedback[text]" id="text" placeholder="When you didn't refund me last week I..." class="p-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
+    </div>
+
+    <div class="mt-1">
+      <p class="text-right">50 / 250</p>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="mt-1 inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+        <!-- Heroicon name: mini/envelope -->
+        <svg class="-ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
+          <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
+        </svg>
+        Send Feedback
+      </button>
     </div>
   </div>
-
-  <!-- <label for="comment" class="block text-sm font-medium text-gray-700">Add your comment</label> -->
-
-  <div class="mt-1">
-    <textarea rows="4" name="text" id="text" placeholder="When you didn't refund me last week I..." class="p-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
-  </div>
-
-  <div class="mt-1">
-    <p class="text-right">50 / 250</p>
-  </div>
-
-  <div class="text-center">
-    <button type="button" class="mt-1 inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-      <!-- Heroicon name: mini/envelope -->
-      <svg class="-ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-        <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
-        <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
-      </svg>
-      Send Feedback
-    </button>
-  </div>
-
-</div>
+<% end %>
