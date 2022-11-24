@@ -8,6 +8,21 @@ class TwitterService
   def self.tweet!(feedback)
     body = { "text": message(feedback) }
 
+    # check if the recipient_handle is in the database
+    # and if it is in the database more than once because the last entry in the database is the current tweet we are sending
+    # if above condition is true
+    # then we need to capture the tweet_id of the previous tweet
+    if Feedback.exists?(recipient_handle: feedback.recipient_handle) && Feedback.where(recipient_handle: feedback.recipient_handle).count > 1
+      prev_tweet_id = Feedback.where(recipient_handle: feedback.recipient_handle).order(created_at: :desc).offset(1).first.tweet_id
+    else
+      prev_tweet_id = nil
+    end
+
+    # append prev_tweet_id to the body if it is not nil
+    if prev_tweet_id
+      body[:reply] = {"in_reply_to_tweet_id": prev_tweet_id}
+    end
+
     @consumer = OAuth::Consumer.new(
       ENV['twitter_consumer_key'],
       ENV['twitter_consumer_secret'],
