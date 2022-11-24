@@ -1,6 +1,7 @@
 class FeedbacksController < ApplicationController
   def create
     feedback = Feedback.create(feedback_params)
+    # dummy comment to check git push
     session[:tweet_url] = feedback.tweet_url
 
     redirect_to root_path
