@@ -24,7 +24,7 @@ class Feedback < ApplicationRecord
     self.class.for_handle(recipient_handle).count > 1
   end
 
-  def threadable_tweet_id
+  def previous_tweet_id
     self.class.for_handle(recipient_handle).where("created_at < ?", created_at).order(created_at: :desc).first.tweet_id
   end
 end

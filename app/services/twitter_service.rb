@@ -9,7 +9,7 @@ class TwitterService
     body = { "text": message(feedback) }
 
     if feedback.threadable?
-      body[:reply] = { "in_reply_to_tweet_id": feedback.threadable_tweet_id }
+      body[:reply] = { "in_reply_to_tweet_id": feedback.previous_tweet_id }
     end
 
     @consumer = OAuth::Consumer.new(
