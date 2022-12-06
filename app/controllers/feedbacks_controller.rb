@@ -7,17 +7,11 @@ class FeedbacksController < ApplicationController
   end
 
   def exists
-    # function that checks if the handle exists in the database
-    # then returns a json object with true
+    # get existing feedback
+    feedback = Feedback.find_by(recipient_handle: params[:handle])
 
-    handle = params[:handle]
-    exists = Feedback.exists?(recipient_handle: handle)
-    if exists
-      feedback = Feedback.where(recipient_handle: handle).last
-      render json: {exists: true, existing_feedback_tweet_url: feedback.tweet_url}
-    else
-      render json: {exists: false}
-    end
+    # return json with existing feedback tweet url
+    render json: { existing_feedback_tweet_url: feedback&.tweet_url }
   end
 
   private
