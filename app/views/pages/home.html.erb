@@ -7,7 +7,6 @@
     <p class="mt-4 text-lg leading-6 text-gray-700">
       Unidentified Feedback is a free tool that allows anyone to share a brief suggestion, anonymously, by simply providing a Twitter username.
     </p>
-    <!-- <a href="#" class="mt-8 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-indigo-600 hover:bg-indigo-50 sm:w-auto">Sign up for free</a> -->
   </div>
 </div>
 
@@ -21,7 +20,12 @@
       </div>
     </div>
 
-    <!-- <label for="comment" class="block text-sm font-medium text-gray-700">Add your comment</label> -->
+    <div id="existing_feedback" class="mt-1 mb-4 hidden">
+      <p class="text-sm text-gray-500">
+        We've already received feedback for this handle.
+        <a id="existing_feedback_url" href="" target="_blank" class="text-indigo-600 hover:text-indigo-500">View it here.</a>
+      </p>
+    </div>
 
     <div class="mt-1">
       <textarea rows="4" required maxlength="250" name="feedback[text]" id="text" placeholder="When you didn't refund me last week I..." class="p-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
@@ -49,7 +53,6 @@
 <% end %>
 
 <script type="text/javascript">
-
   var charCounter = document.getElementById('char_counter');
 
   document.getElementById('text').addEventListener('keyup', function(){
@@ -64,6 +67,8 @@
   });
 
   var recipientHandle = document.getElementById('feedback_recipient_handle');
+  var existingFeedback = document.getElementById('existing_feedback');
+  var existingFeedbackUrl = document.getElementById('existing_feedback_url');
 
   /*
   add event listener to feedback_recipient_handle on the change
@@ -71,24 +76,15 @@
   */
   recipientHandle.addEventListener('change', function() {
     const handle = recipientHandle.value;
-    /* make a fetch request to the backend to see if the handle exists */
-    fetch('/feedbacks/exists?handle=' + handle)
+    fetch('/feedbacks/' + handle)
       .then(response => response.json())
       .then(data => {
-        /* if existing_feedback_tweet_url is not null, create new paragraph in html
-        with link to existing feedback tweet
-        otherwise delete that paragraph if exists */
         if (data.existing_feedback_tweet_url) {
           const existingFeedbackTweetUrl = data.existing_feedback_tweet_url;
-          const existingFeedbackTweetUrlParagraph = document.createElement('div');
-          existingFeedbackTweetUrlParagraph.classList.add('mt-4');
-          existingFeedbackTweetUrlParagraph.innerHTML = `<p class="text-sm text-gray-500">We've already received feedback for this handle. <a href="${existingFeedbackTweetUrl}" target="_blank" class="text-indigo-600 hover:text-indigo-500">View it here</a>.</p>`;
-          recipientHandle.parentNode.parentNode.appendChild(existingFeedbackTweetUrlParagraph);
+          existingFeedbackUrl.href = existingFeedbackTweetUrl;
+          existingFeedback.classList.remove('hidden');
         } else {
-          const existingFeedbackTweetUrlParagraph = recipientHandle.parentNode.parentNode.querySelector('div.mt-4');
-          if (existingFeedbackTweetUrlParagraph) {
-            existingFeedbackTweetUrlParagraph.remove();
-          }
+          existingFeedback.classList.add('hidden');
         }
       });
   });
