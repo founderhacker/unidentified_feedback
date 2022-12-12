@@ -6,6 +6,14 @@ class FeedbacksController < ApplicationController
     redirect_to root_path
   end
 
+  def exists
+    # get existing feedback
+    feedback = Feedback.find_by(recipient_handle: params[:handle])
+
+    # return json with existing feedback tweet url
+    render json: { existing_feedback_tweet_url: feedback&.tweet_url }
+  end
+
   private
 
   def feedback_params

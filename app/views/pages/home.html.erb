@@ -49,7 +49,8 @@
 <% end %>
 
 <script type="text/javascript">
-  const charCounter = document.getElementById('char_counter');
+
+  var charCounter = document.getElementById('char_counter');
 
   document.getElementById('text').addEventListener('keyup', function(){
     let charLength = this.value.length;
@@ -61,4 +62,35 @@
       charCounter.style.color = 'black'
     }
   });
+
+  var recipientHandle = document.getElementById('feedback_recipient_handle');
+
+  /*
+  add event listener to feedback_recipient_handle on the change
+  that queries the ruby backend to see if that handle exists in database
+  */
+  recipientHandle.addEventListener('change', function() {
+    const handle = recipientHandle.value;
+    /* make a fetch request to the backend to see if the handle exists */
+    fetch('/feedbacks/exists?handle=' + handle)
+      .then(response => response.json())
+      .then(data => {
+        /* if existing_feedback_tweet_url is not null, create new paragraph in html
+        with link to existing feedback tweet
+        otherwise delete that paragraph if exists */
+        if (data.existing_feedback_tweet_url) {
+          const existingFeedbackTweetUrl = data.existing_feedback_tweet_url;
+          const existingFeedbackTweetUrlParagraph = document.createElement('div');
+          existingFeedbackTweetUrlParagraph.classList.add('mt-4');
+          existingFeedbackTweetUrlParagraph.innerHTML = `<p class="text-sm text-gray-500">We've already received feedback for this handle. <a href="${existingFeedbackTweetUrl}" target="_blank" class="text-indigo-600 hover:text-indigo-500">View it here</a>.</p>`;
+          recipientHandle.parentNode.parentNode.appendChild(existingFeedbackTweetUrlParagraph);
+        } else {
+          const existingFeedbackTweetUrlParagraph = recipientHandle.parentNode.parentNode.querySelector('div.mt-4');
+          if (existingFeedbackTweetUrlParagraph) {
+            existingFeedbackTweetUrlParagraph.remove();
+          }
+        }
+      });
+  });
+
 </script>

@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'pages#home'
   post 'feedbacks', to: 'feedbacks#create'
+  get 'feedbacks/exists', to: 'feedbacks#exists'
 end
