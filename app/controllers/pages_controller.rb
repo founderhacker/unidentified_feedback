@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   end
 
   def thanks
-    # when user gets to this page, send email
+    # when user gets to this page, send email to me
     AdminMailer.pinned_tweet_purchased_email.deliver_later
   end
   
