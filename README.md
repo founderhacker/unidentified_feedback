@@ -1,5 +1,5 @@
 # Unidentified Feedback
-simple app that turns anonymous feedback into [Tweets](https://twitter.com/unidentified_ft), for all to see.
+simple app that turns anonymous feedback into [Tweets](https://twitter.com/unidentified_ft) for all to see. learn how to build this at [24 Hour MVP](https://founderhacker.com/24-hour-mvp).
 
 ## Installation
 1. clone the repo
