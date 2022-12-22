@@ -6,7 +6,7 @@ class StripeService
     pay_link_object = Stripe::PaymentLink.create(
       {
         line_items: [{price: 'price_1MHduzDNIFxLovfoNcmoBxgw', quantity: 1}],
-        after_completion: {type: 'redirect', redirect: {url: "http://127.0.0.1:3000/thanks?feedback_id=#{feedback_id}"}}, # HEADS UP: error might happen with session being undefined, let's see
+        after_completion: {type: 'redirect', redirect: {url: "http://127.0.0.1:3000/payment_received?feedback_id=#{feedback_id}"}}, # HEADS UP: error might happen with session being undefined, let's see
       },
     )
 

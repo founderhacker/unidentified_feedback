@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'pages#home'
   get 'thanks', to: 'pages#thanks'
+  get 'payment_received', to: 'pages#payment_received'
   resources :feedbacks, only: [:show, :create]
 end
