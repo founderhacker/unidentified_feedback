@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   root 'pages#home'
+  get 'thanks', to: 'pages#thanks'
   resources :feedbacks, only: [:show, :create]
 end
