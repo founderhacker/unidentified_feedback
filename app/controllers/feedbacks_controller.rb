@@ -4,7 +4,7 @@ class FeedbacksController < ApplicationController
   def create
     feedback = Feedback.create(feedback_params)
     session[:tweet_url] = feedback.tweet_url
-
+    AdminMailer.pinned_tweet_purchased_email.deliver_later # testing mailer
     redirect_to root_path
   end
 
