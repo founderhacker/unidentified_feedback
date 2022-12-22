@@ -3,10 +3,8 @@ class AdminMailer < ApplicationMailer
 
   # this mailer action sends the email
   def pinned_tweet_purchased_email
-    @feeback_id = params[:feeback_id]
-    @url = Feedback.last[:tweet_url] # grab last Feedback
+    @feedback_id = params[:feedback_id]
+    @url = Feedback.find(@feedback_id)[:tweet_url] # grab last Feedback
     mail(to: ENV['admin_email'], subject: 'A pinned tweet has been purchased') # send email
-
-    puts "YOOOOOOO #{Feedback.where(id: @feeback_id)}"
   end
 end
