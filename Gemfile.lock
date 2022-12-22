@@ -175,6 +175,7 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.1.1)
       railties (>= 6.0.0)
+    stripe (8.0.0)
     tailwindcss-rails (2.0.19-arm64-darwin)
       railties (>= 6.0.0)
     tailwindcss-rails (2.0.19-x86_64-darwin)
@@ -220,6 +221,7 @@ DEPENDENCIES
   redis (~> 4.0)
   sprockets-rails
   stimulus-rails
+  stripe
   tailwindcss-rails
   turbo-rails
   typhoeus
