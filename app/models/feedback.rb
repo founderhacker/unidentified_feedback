@@ -16,7 +16,8 @@ class Feedback < ApplicationRecord
   end
 
   def send_tweet
-    TwitterService.tweet!(self)
+    #TwitterService.tweet!(self)
+    TwitterServiceJob.set(wait: 1.minute).perform_later(self)
   end
 
   # feature - combines all feedback for a given recipient_handle in 1 Twitter thread
