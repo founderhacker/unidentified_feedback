@@ -5,6 +5,8 @@ ruby "3.1.2"
 
 gem "stripe"
 
+gem "delayed"
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 
