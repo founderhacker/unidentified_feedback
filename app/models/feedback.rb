@@ -17,7 +17,9 @@ class Feedback < ApplicationRecord
 
   def send_tweet
     #TwitterService.tweet!(self)
-    TwitterServiceJob.set(wait: ENV['delayed_delay_time'].to_i.minute).perform_later(self)
+    job = TwitterServiceJob.set(wait: ENV['delayed_delay_time'].to_i.minute).perform_later(self)
+    self.update(delayed_job_id: JSON.parse(job.to_json)["provider_job_id"]) # update feedback with the id its job
+    self.update(delayed_job_scheduled_at: JSON.parse(job.to_json)["scheduled_at"]) # update feedback with the id its job
   end
 
   # feature - combines all feedback for a given recipient_handle in 1 Twitter thread

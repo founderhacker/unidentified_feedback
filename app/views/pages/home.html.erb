@@ -45,6 +45,12 @@
         Send Feedback
       </button>
     </div>
+    
+    <% if @estimated_minutes_until_tweet.to_i > 0 %>
+      <p class="mt-4 text-center">Feedback added to queue. Will be tweeted in: <%= @estimated_minutes_until_tweet %> minute(s)!</p>
+    <% end %>
+    
+
 
     <% if session[:tweet_url] %>
       <p class="mt-4 text-center">Tweet sent! <a href="<%= session[:tweet_url] %>" target="_blank" class="text-indigo-700">View it.</a></p>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_23_024046) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_26_190143) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,6 +36,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_024046) do
     t.string "tweet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "delayed_job_id"
+    t.integer "delayed_job_scheduled_at"
   end
 
 end
