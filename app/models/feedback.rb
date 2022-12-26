@@ -20,7 +20,8 @@ class Feedback < ApplicationRecord
     # check if there are jobs and check to see if they most recent job has happened already. if not, use that job's run_at time and add X minutes to it to create the run_at time for the next job to be run
 
     # else just delay by X minutes (X is modifiable via ENV)
-    if Delayed::Job.count > 0 
+    if Delayed::Job.count > 0
+      Delayed::Job.where.not(last_error: nil).destroy_all # clear the jobs table of jobs with errors
       if Delayed::Job.last.run_at.past? == false
         next_scheduled_job_run_at_time = Delayed::Job.last.run_at + (ENV['delayed_delay_minutes'].to_i * 60)
         job = TwitterServiceJob.set(wait_until: next_scheduled_job_run_at_time).perform_later(self)
