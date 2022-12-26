@@ -1,12 +1,6 @@
 class PagesController < ApplicationController
   def home
     @pay_link_url = StripeService.create_pay_link(session[:feedback_id])
-
-    if Feedback.count > 0
-      tweet_job_run_at = Feedback.find(session[:feedback_id]).delayed_job_scheduled_at.to_i
-      @estimated_minutes_until_tweet = (tweet_job_run_at - Time.new.to_i).fdiv(60).ceil
-    end
-    
   end
 
   def thanks
@@ -18,5 +12,13 @@ class PagesController < ApplicationController
     AdminMailer.with(feedback_id: @feedback_id).pinned_tweet_purchased_email.deliver_later
     redirect_to thanks_path
   end
+
+  def feedback_in_queue
+    if Feedback.count > 0
+      tweet_job_run_at = Feedback.find(session[:feedback_id]).delayed_job_scheduled_at.to_i
+      @estimated_minutes_until_tweet = (tweet_job_run_at - Time.new.to_i).fdiv(60).ceil
+    end
+  end
+  
   
 end

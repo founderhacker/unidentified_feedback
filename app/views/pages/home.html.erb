@@ -46,12 +46,7 @@
       </button>
     </div>
     
-    <% if @estimated_minutes_until_tweet.to_i > 0 %>
-      <% if @estimated_minutes_until_tweet.to_i > 60 %>
-        <p class="mt-4 text-center">Feedback added to queue. Will be tweeted in: <%= (@estimated_minutes_until_tweet.to_i).fdiv(60).ceil %> hour(s)!</p>
-      <% end %>
-      <p class="mt-4 text-center">Feedback added to queue. Will be tweeted in: <%= @estimated_minutes_until_tweet.to_i %> minute(s)!</p>
-    <% end %>
+    
     
 
 
