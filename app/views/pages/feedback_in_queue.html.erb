@@ -17,10 +17,10 @@
     <% if @estimated_minutes_until_tweet.to_i> 0 %>
       <% if @estimated_minutes_until_tweet.to_i> 60 %>
         <p class="mt-4 text-center">Feedback added to queue. Will be tweeted in about: <%=
-            (@estimated_minutes_until_tweet.to_i).fdiv(60).ceil %> hour(s).</p>
+            (@estimated_minutes_until_tweet.to_i).fdiv(60).ceil %> hour(s), <a href="<%= @pay_link_url%>" target="_blank" class="text-indigo-700">pay $1 to send it immediately!</a> </p>
        <% end %>
         <p class="mt-4 text-center">Feedback added to queue. Will be tweeted in about: <%=
-              @estimated_minutes_until_tweet.to_i %> minute(s).</p>
+              @estimated_minutes_until_tweet.to_i %> minute(s), <a href="<%= @pay_link_url%>" target="_blank" class="text-indigo-700">pay $1 to send it immediately!</a> </p>
      <% end %>
   </body>
 </html>
