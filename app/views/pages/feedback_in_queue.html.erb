@@ -1,0 +1,28 @@
+<html>
+  <body>
+    <div class="">
+      <div class="mx-auto max-w-2xl py-16 px-4 text-center sm:py-20 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold tracking-tight text-indigo-700 sm:text-4xl">
+          <span class="block">Give anonymous feedback to</span>
+          <span class="block">brands you love (or hate).</span>
+        </h2>
+        <p class="mt-4 text-lg leading-6 text-gray-700">
+          Unidentified Feedback is a free tool that allows anyone to share a brief suggestion, anonymously, by simply
+          providing a Twitter username.
+        </p>
+      </div>
+    </div>
+    
+    
+    <% if @estimated_minutes_until_tweet.to_i> 0 %>
+      <% if @estimated_minutes_until_tweet.to_i> 60 %>
+        <p class="mt-4 text-center">Feedback added to queue. Will be tweeted in about: <%=
+            (@estimated_minutes_until_tweet.to_i).fdiv(60).ceil %> hour(s), <a href="<%= @pay_link_url%>" target="_blank" class="text-indigo-700">pay $1 to send it immediately!</a> </p>
+       <% end %>
+        <p class="mt-4 text-center">Feedback added to queue. Will be tweeted in about: <%=
+              @estimated_minutes_until_tweet.to_i %> minute(s), <a href="<%= @pay_link_url%>" target="_blank" class="text-indigo-700">pay $1 to send it immediately!</a> </p>
+     <% end %>
+  </body>
+</html>
+
+

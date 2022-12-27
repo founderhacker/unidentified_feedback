@@ -11,7 +11,7 @@
 </div>
 
 <%= form_for(Feedback.new) do |f| %>
-  <div class="max-w-lg mx-auto mt-28">
+  <div class="max-w-lg mx-auto mt-5">
     <div>
       <label for="recipient_handle" class="block text-sm font-medium text-gray-700">Recipient Twitter Handle</label>
       <div class="mt-1 flex rounded-md shadow-sm">
@@ -45,10 +45,6 @@
         Send Feedback
       </button>
     </div>
-
-    <% if session[:tweet_url] %>
-      <p class="mt-4 text-center">Tweet sent! <a href="<%= session[:tweet_url] %>" target="_blank" class="text-indigo-700">View it.</a></p>
-    <% end %>
   </div>
 <% end %>
 
