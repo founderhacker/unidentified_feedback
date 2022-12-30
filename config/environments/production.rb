@@ -62,7 +62,27 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "unidentified_feedback_production"
 
+
+  # mailer config
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_options = {from: ENV['admin_email']}
+  host = 'localhost:3000'
+  config.action_mailer.default_url_options = { :host => 'localhost:3000', protocol: 'http' }
+  config.action_mailer.default :charset => "utf-8"
+
   config.action_mailer.perform_caching = false
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'gmail.com',
+    user_name: ENV['admin_email'],
+    password: ENV['admin_google_app_password'],
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

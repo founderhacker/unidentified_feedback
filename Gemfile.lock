@@ -116,6 +116,8 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.9-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.13.9-x86_64-darwin)
+      racc (~> 1.4)
     nokogiri (1.13.9-x86_64-linux)
       racc (~> 1.4)
     oauth (1.1.0)
@@ -173,7 +175,10 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.1.1)
       railties (>= 6.0.0)
+    stripe (8.0.0)
     tailwindcss-rails (2.0.19-arm64-darwin)
+      railties (>= 6.0.0)
+    tailwindcss-rails (2.0.19-x86_64-darwin)
       railties (>= 6.0.0)
     tailwindcss-rails (2.0.19-x86_64-linux)
       railties (>= 6.0.0)
@@ -200,6 +205,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
+  x86_64-darwin-21
   x86_64-linux
 
 DEPENDENCIES
@@ -215,6 +221,7 @@ DEPENDENCIES
   redis (~> 4.0)
   sprockets-rails
   stimulus-rails
+  stripe
   tailwindcss-rails
   turbo-rails
   typhoeus
