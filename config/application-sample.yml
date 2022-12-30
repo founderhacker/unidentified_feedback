@@ -1,0 +1,16 @@
+admin_email: somewhere@gmail.com
+admin_email_password: gmail_password
+company_name: Unidentified Feedback
+twitter_consumer_key: asdf
+twitter_consumer_secret: fdsa
+twitter_oauth_token: '12345-asdf'
+twitter_oauth_token_secret: qwerty
+twitter_username: some_handle
+development:
+  base_url: http://localhost:3000
+  stripe_api_key: 'sk_test_asdf'
+  stripe_price_id: ''
+production:
+  base_url: https://unidentifiedfeedback.com
+  stripe_api_key: 'sk_live_asdf'
+  stripe_price_id: ''
