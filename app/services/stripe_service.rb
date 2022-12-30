@@ -1,17 +1,20 @@
 class StripeService
 
   def self.create_pay_link(feedback_id)
-    Stripe.api_key = ENV['stripe_test_api_key']
+    return nil unless ENV['stripe_price_id'].present?
 
     pay_link_object = Stripe::PaymentLink.create(
       {
-        line_items: [{price: 'price_1MHduzDNIFxLovfoNcmoBxgw', quantity: 1}],
-        after_completion: {type: 'redirect', redirect: {url: "http://127.0.0.1:3000/payment_received?feedback_id=#{feedback_id}"}}, # HEADS UP: error might happen with session being undefined, let's see
-      },
+        line_items: [
+          { price: ENV['stripe_price_id'], quantity: 1 }
+        ],
+        after_completion: {
+          type: 'redirect',
+          redirect: { url: "#{ENV['base_url']}/payment_received?feedback_id=#{feedback_id}" }
+        }
+      }
     )
 
-    pay_link_url = pay_link_object[:url]
-
-    return pay_link_url
+    pay_link_object[:url]
   end
 end
