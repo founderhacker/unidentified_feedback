@@ -34,5 +34,24 @@ module UnidentifiedFeedback
     # Don't generate system test files.
     config.generators.system_tests = nil
     config.active_job.queue_adapter = :delayed
+
+
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.perform_caching = false
+    config.action_mailer.default_url_options = { host: ENV['base_url'] }
+    config.action_mailer.default_options = { from: ENV['admin_email'] }
+    config.action_mailer.default :charset => "utf-8"
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address: 'smtp.gmail.com',
+      port: 587,
+      domain: 'gmail.com',
+      user_name: ENV['admin_email'],
+      password: ENV['admin_email_password'],
+      authentication: 'plain',
+      enable_starttls_auto: true
+    }
   end
 end

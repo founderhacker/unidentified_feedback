@@ -49,7 +49,11 @@
 
     <% if session[:tweet_url] %>
       <p class="mt-4 text-center">Tweet sent! <a href="<%= session[:tweet_url] %>" target="_blank" class="text-indigo-700">View it.</a></p>
-      <p class="mt-4 text-center">Want your tweet Pinned? <a href="<%= @pay_link_url%>" target="_blank" class="text-indigo-700">Pay $5 to Pin.</a></p>
+      <% session[:tweet_url] = nil %>
+    <% end %>
+    <% if session[:pay_link_url] %>
+      <p class="mt-4 text-center">Want your tweet Pinned? <a href="<%= session[:pay_link_url] %>" target="_blank" class="text-indigo-700">Pay $5 to Pin.</a></p>
+      <% session[:pay_link_url] = nil %>
     <% end %>
   </div>
 <% end %>
