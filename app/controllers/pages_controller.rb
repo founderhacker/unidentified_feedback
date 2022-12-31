@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :set_feedback, only: [:payment_received]
+  before_action :set_feedback, only: [:payment_received, :feedback_in_queue]
 
   def home
   end
@@ -17,7 +17,7 @@ class PagesController < ApplicationController
   def feedback_in_queue
     # present user with estimated time until feedback is tweeted
     if Feedback.count > 0
-      tweet_job_scheduled_at_time = Feedback.find(session[:feedback_id]).delayed_job_scheduled_at.to_i
+      tweet_job_scheduled_at_time = @feedback.delayed_job_scheduled_at.to_i
       @estimated_minutes_until_tweet = (tweet_job_scheduled_at_time - Time.new.to_i).fdiv(60).ceil
     end
   end
