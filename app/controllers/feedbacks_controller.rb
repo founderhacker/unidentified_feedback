@@ -5,6 +5,7 @@ class FeedbacksController < ApplicationController
     feedback = Feedback.create(feedback_params)
 
     session[:tweet_url] = feedback.tweet_url
+    session[:feedback_id] = feedback.id
     session[:pay_link_url] = StripeService.create_pay_link(feedback.id)
 
     redirect_to feedback_in_queue_path
