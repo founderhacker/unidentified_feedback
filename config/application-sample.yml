@@ -6,7 +6,6 @@ twitter_consumer_secret: fdsa
 twitter_oauth_token: "12345-asdf"
 twitter_oauth_token_secret: qwerty
 twitter_username: some_handle
-delayed_delay_minutes: "1"
 development:
   base_url: http://localhost:3000
   stripe_api_key: "sk_test_asdf"

@@ -14,14 +14,11 @@
     </div>
     
     
-    <% if @estimated_minutes_until_tweet.to_i> 0 %>
-      <% if @estimated_minutes_until_tweet.to_i> 60 %>
-        <p class="mt-4 text-center">Feedback added to queue. Will be tweeted in about: <%=
-            (@estimated_minutes_until_tweet.to_i).fdiv(60).ceil %> hour(s).</p>
-       <% end %>
-        <p class="mt-4 text-center">Feedback added to queue. Will be tweeted in about: <%=
-              @estimated_minutes_until_tweet.to_i %> minute(s).</p>
+    <% if @estimated_minutes_until_tweet.to_i > 0 %>
+        <p class="mt-4 text-center">Feedback added to queue. Will be tweeted in about: <%= @estimated_minutes_until_tweet %> minute(s).</p>
      <% end %>
+
+     <p class="mt-8 text-center">Have more feedback? <a href="/" class="underline text-indigo-400">Submit another</a> </p>
   </body>
 </html>
 

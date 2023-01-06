@@ -17,8 +17,7 @@ class PagesController < ApplicationController
   def feedback_in_queue
     # present user with estimated time until feedback is tweeted
     if Feedback.count > 0
-      tweet_job_scheduled_at_time = Feedback.find(session[:feedback_id]).delayed_job_scheduled_at.to_i
-      @estimated_minutes_until_tweet = (tweet_job_scheduled_at_time - Time.new.to_i).fdiv(60).ceil
+      @estimated_minutes_until_tweet = Delayed::Job.count
     end
   end
   
