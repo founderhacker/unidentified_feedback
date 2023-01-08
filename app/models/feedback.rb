@@ -16,7 +16,12 @@ class Feedback < ApplicationRecord
   end
 
   def send_tweet
-    TwitterService.tweet!(self)
+    if Delayed::Job.count > 0 # check if there's more than one active job
+      Delayed::Job.where.not(last_error: nil).destroy_all # clear the jobs table of jobs with error
+      TwitterServiceJob.set(wait: (Delayed::Job.count + 1).minutes).perform_later(self)
+    else 
+      TwitterServiceJob.perform_later(self)
+    end
   end
 
   # feature - combines all feedback for a given recipient_handle in 1 Twitter thread

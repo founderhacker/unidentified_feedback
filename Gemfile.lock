@@ -75,6 +75,9 @@ GEM
     debug (1.6.3)
       irb (>= 1.3.6)
       reline (>= 0.3.1)
+    delayed (0.4.0)
+      activerecord (>= 5.2)
+      concurrent-ruby
     erubi (1.11.0)
     ethon (0.16.0)
       ffi (>= 1.15.0)
@@ -211,6 +214,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   debug
+  delayed
   figaro
   importmap-rails
   jbuilder

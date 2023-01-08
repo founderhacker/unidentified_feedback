@@ -14,6 +14,14 @@ class PagesController < ApplicationController
     redirect_to thanks_path
   end
 
+  def feedback_in_queue
+    # present user with estimated time until feedback is tweeted
+    if Feedback.count > 0
+      @estimated_minutes_until_tweet = Delayed::Job.count
+    end
+  end
+  
+  
   private
 
   def set_feedback
